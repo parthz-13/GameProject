@@ -119,6 +119,11 @@ function Game() {
     }
   };
 
+  const handlePlayAgain = () => {
+    setGameOver(false);
+    resetGame();
+  };
+
   const resetGame = () => {
     setCurrentWord("");
     setEnteredWords([]);
@@ -182,6 +187,23 @@ function Game() {
         </button>
       </div>
 
+      {gameOver && (
+        <div className="game-over-popup">
+          <div className="popup-content">
+            <h2>Game Over!</h2>
+            <p>Total Score: {score}</p>
+            <div className="popup-buttons">
+              <button onClick={handlePlayAgain} className="play-again-button">
+                Play Again
+              </button>
+              <button onClick={resetGame} className="restart-button">
+                New Game
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {showHowToPlay && (
         <div className="how-to-play">
           <h3>How to Play</h3>
@@ -194,13 +216,6 @@ function Game() {
             If you need to remove a word, click "Delete". Click submit after
             creating your 5 letter word.
           </p>
-        </div>
-      )}
-
-      {gameOver && (
-        <div className="game-over">
-          <h2>Total Score: {score}</h2>
-          <button onClick={resetGame}>Play Again</button>
         </div>
       )}
     </div>
