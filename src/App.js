@@ -63,17 +63,19 @@ function Game() {
   const [showHowToPlay, setShowHowToPlay] = useState(false);
 
   const handleLetterClick = (letter) => {
-    if (currentWord.length < 5) {
+    if (currentWord.length < 5 && !gameOver) {
       setCurrentWord((prev) => prev + letter);
     }
   };
 
   const handleDelete = () => {
-    setCurrentWord((prev) => prev.slice(0, -1));
+    if (!gameOver) {
+      setCurrentWord((prev) => prev.slice(0, -1));
+    }
   };
 
   const handleSubmit = async () => {
-    if (currentWord.length !== 5) return;
+    if (currentWord.length !== 5 || gameOver) return;
 
     // Check if word exists in dictionary
     const isValid = await checkDictionary(currentWord);
@@ -111,7 +113,7 @@ function Game() {
       setScore((prev) => prev + wordScore);
       setCurrentWord("");
 
-      if (enteredWords.length === 4) {
+      if (enteredWords.length === 5) {
         setGameOver(true);
       }
     } else {
