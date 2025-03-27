@@ -1,38 +1,193 @@
-.App {
+.game-container {
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: "Courier New", monospace;
+  background-color: #6b4226; /* Rich chocolate brown */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.game-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("https://images.unsplash.com/photo-1518649636811-a1a426303863?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80")
+    no-repeat center center;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+.game-title {
   text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.score {
+  font-size: 24px;
+  margin: 20px 0;
+  font-weight: bold;
+  color: #fff;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.word-display {
+  margin: 20px 0;
+  font-size: 24px;
+  min-height: 120px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.current-word {
+  font-size: 32px;
+  letter-spacing: 5px;
+  margin: 10px 0;
+  color: #666;
+}
+
+.keyboard {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 8px;
+}
+
+.keyboard-row {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 5px;
 }
 
-.App-link {
-  color: #61dafb;
+.keyboard-row button {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border: 2px solid #4a2b1a;
+  border-radius: 5px;
+  background: #8b4513;
+  cursor: pointer;
+  color: #fff;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.keyboard-row button:hover {
+  background: #a0522d;
+  transform: translateY(-2px);
+}
+
+.keyboard-row button:disabled {
+  background: #5c3317;
+  cursor: not-allowed;
+}
+
+.points {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  font-size: 12px;
+  color: #fff;
+  font-family: "Courier New", monospace;
+}
+
+.controls {
+  margin: 20px 0;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.controls button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #8b4513;
+  color: #fff;
+  border: 2px solid #4a2b1a;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  margin: 0 5px;
+}
+
+.controls button:hover {
+  background-color: #a0522d;
+  transform: translateY(-2px);
+}
+
+.controls button.restart-button {
+  background-color: #8b4513;
+  border-color: #4a2b1a;
+}
+
+.controls button.restart-button:hover {
+  background-color: #a0522d;
+}
+
+.controls button.how-to-play-button {
+  background-color: #8b4513;
+  border-color: #4a2b1a;
+}
+
+.controls button.how-to-play-button:hover {
+  background-color: #a0522d;
+}
+
+.how-to-play {
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #8b4513;
+  border-radius: 10px;
+  border: 2px solid #4a2b1a;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.how-to-play h3 {
+  color: #fff;
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-family: "Courier New", monospace;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.how-to-play p {
+  margin: 10px 0;
+  color: #fff;
+  line-height: 1.5;
+  font-family: "Courier New", monospace;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.game-over {
+  text-align: center;
+  padding: 20px;
+  background: #f0f0f0;
+  border-radius: 10px;
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.error {
+  color: #ff4444;
+  background-color: #ffebee;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+  text-align: center;
+  font-size: 16px;
 }
