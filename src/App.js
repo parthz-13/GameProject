@@ -75,7 +75,7 @@ function Game() {
   };
 
   const handleSubmit = async () => {
-    if (currentWord.length < 5) {
+    if (currentWord.length !== 5) {
       setError("Word must be exactly 5 letters long");
       return;
     }
@@ -181,7 +181,10 @@ function Game() {
 
       <div className="controls">
         <button onClick={handleDelete}>Delete</button>
-        <button onClick={handleSubmit} disabled={currentWord.length !== 5}>
+        <button
+          onClick={handleSubmit}
+          disabled={currentWord.length !== 5 || gameOver}
+        >
           Submit
         </button>
         <button onClick={resetGame} className="restart-button">
