@@ -75,7 +75,10 @@ function Game() {
   };
 
   const handleSubmit = async () => {
-    if (currentWord.length !== 5 || gameOver) return;
+    if (currentWord.length < 5) {
+      setError("Word must be exactly 5 letters long");
+      return;
+    }
 
     // Check if word exists in dictionary
     const isValid = await checkDictionary(currentWord);
